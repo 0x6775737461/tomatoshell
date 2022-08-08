@@ -42,9 +42,13 @@ clean() {
 
 
 print_help() {
-    echo "usage: 'install', 'uninstall', 'clean'." &&
-    echo "example: '$ ./configure install' to install the program." &&
-    exit 1
+   echo -e \
+   """
+   \rusage: 'install', 'uninstall', 'clean'.
+   \rexample: '$ ./configure install' to install the program.
+   """
+
+   exit 1
 }
 
 
