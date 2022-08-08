@@ -1,10 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 name="tomatoshell"
 name_log="tomatoshell_log.csv"
-bin_dir="/usr/local/bin"
-data_dir="$HOME/.local/share/$name"
 
+audio_path="etc/alarm.wav"
+
+bin_dir="${HOME}/.local/bin/"
+data_dir="${HOME}/.local/share/${name}"
 
 install() {
     clean 2> /dev/null
@@ -24,9 +26,15 @@ uninstall() {
 
 
 clean() {
-    rm "$data_dir/$name_log" &&
-    touch "$data_dir/$name_log" &&
-    cp etc/alarm.wav "$data_dir/"
+   local csv_path="${data_dir}/${name_log}"
+
+   # has an old tomatoshell binary or the audio file? if yet,
+   # delete him.
+   test -f "$csv_path" && rm "$csv_path"
+   test -f "${data_path}/${audio_path}" && rm "$csv_path"
+
+   cp etc/alarm.wav "$data_dir/"
+   > "$csv_path"
 }
 
 
