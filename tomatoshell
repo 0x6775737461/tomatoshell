@@ -25,6 +25,10 @@ YELLOW="\033[0;33m"
 CYAN="\033[0;34m"
 FIN="\033[0m"
 
+# icons
+TOMATO='🍅'
+FACE='🤓'
+R_ARROW='\Uf061'
 
 write_to_log() {
     date_f=$(date +"%Y-%m-%d")
@@ -35,7 +39,7 @@ write_to_log() {
 total_hours_used() {
     printf "$YELLOW Total hours spent focused: $FIN"
     awk -F ',' '{sum+=$2 * $3;} END{printf "%d", int(sum / 3600);}' $LOG
-    printf "h 🍅🤓\n"
+    printf "h ${TOMATO}${FACE}\n"
 }
  
 
@@ -95,7 +99,7 @@ display_countdown() {
         print_offset=10
         $FIGLET && clear && printf "%*s\n" $(((${#msg}+$COLUMNS+$print_offset)/2)) "$msg" \
         && echo -ne "$(date -u --date @$((start - $(date +%s))) +%M:%S)\r" | figlet -c -t ||
-        echo -ne "$CYAN\Uf061 $YELLOW $(date -u --date @$((start - $(date +%s))) +%M:%S)$FIN  🍅\r"
+        echo -ne "${CYAN}${R_ARROW} $YELLOW $(date -u --date @$((start - $(date +%s))) +%M:%S)$FIN  ${TOMATO}\r"
 
         # be able to exit while during a countdown
         read -t 1 -r -s -N 1 && [[ $REPLY == 'q' ]] && exit_p
@@ -106,8 +110,8 @@ display_countdown() {
 countdown() {
     time=$1
     session_number=$2
-    msg="🍅Time left of session $session_number/$SESSIONS:🍅"
-    [ $session_number -eq -1 ] && msg="🍅Time left of break:🍅"
+    msg="${TOMATO} Time left of session $session_number/$SESSIONS:${TOMATO}"
+    [ $session_number -eq -1 ] && msg="${TOMATO} Time left of break:${TOMATO}"
 
     # date in seconds when countdown will end
     start=$(($(date +%s) + $1)); 
