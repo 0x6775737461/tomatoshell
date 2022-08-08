@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 name="tomatoshell"
+# TODO: why we r using this?
 name_log="tomatoshell_log.csv"
 
 audio_path="etc/alarm.wav"
@@ -9,11 +10,15 @@ bin_dir="${HOME}/.local/bin/"
 data_dir="${HOME}/.local/share/${name}"
 
 install() {
-    clean 2> /dev/null
-    sudo cp $name $bin_dir &&
-    mkdir -p "$data_dir" &&
-    touch "$data_dir/$name_log" &&
-    cp etc/alarm.wav $data_dir &&
+    clean
+
+    cp "$name" "$bin_dir"
+
+    mkdir -p "$data_dir"
+
+    > "${data_dir}/${name_log}"
+    cp etc/alarm.wav "$data_dir"
+
     exit 0
 }
 
@@ -32,9 +37,6 @@ clean() {
    # delete him.
    test -f "$csv_path" && rm "$csv_path"
    test -f "${data_path}/${audio_path}" && rm "$csv_path"
-
-   cp etc/alarm.wav "$data_dir/"
-   > "$csv_path"
 }
 
 
