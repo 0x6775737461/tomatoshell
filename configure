@@ -48,20 +48,24 @@ print_help() {
 }
 
 
-[ "$#" -eq 0 ] && print_help
+main() {
+   test "$#" -eq 0 && print_help
 
-if [ "$1" = "install" ]
-then
-    install || exit 1
-fi
+   test "$#" -eq 1 && {
+      case "$1" in
+         "install")
+            install
+         ;;
 
-if [ "$1" = "uninstall" ]
-then 
-    uninstall || exit 1
-fi
+         "uninstall")
+            uninstall
+         ;;
 
-[ "$1" = "clean" ] && clean && exit 0 || exit 1
+         *)
+            print_help
+         ;;
+      esac
+   }
+}
 
-# if program executions ends here it means the user typed an invalid argument
-# i use printf here because echo -e is undefined in POSIX sh
-printf "%s\n\n" "invalid argument '$1'." && print_help
+main "$@"
