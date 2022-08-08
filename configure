@@ -24,8 +24,9 @@ install() {
 
 
 uninstall() {
-    sudo rm "$bin_dir/$name" 2> /dev/null &&
-    rm -rf "$data_dir" 2> /dev/null &&
+    rm "${bin_dir}/${name}"
+    rm -rf "$data_dir"
+
     exit 0
 }
 
