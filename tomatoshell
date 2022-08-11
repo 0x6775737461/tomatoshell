@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-HELP="
+HELP="""\
 -r,     prints total hours spent using tomatoshell and exits
 -t,     time for every session in minutes [default:25 minutes]
 -d,     delay between sessions in minutes [default:5 minutes]
 -n,     total sessions [default:3]
 -f,     figlet on
--h,     shows this"
+-h,     shows this\
+"""
 
 # defaults
 TIME=25
@@ -14,8 +15,8 @@ DELAY=5
 SESSIONS=3
 
 FIGLET=false
-ALARM="$HOME/.local/share/tomatoshell/alarm.wav"
-LOG="$HOME/.local/share/tomatoshell/tomatoshell_log.csv"
+ALARM="${HOME}/.local/share/tomatoshell/alarm.wav"
+LOG="${HOME}/.local/share/tomatoshell/tomatoshell_log.csv"
 AUDIO_PLAYER=3
 
 # colors
