@@ -32,7 +32,7 @@ FACE='🤓'
 R_ARROW='\Uf061'
 
 write_to_log() {
-    date_f=$(date +"%Y-%m-%d")
+    date_f=$(date +"%d-%m-%Y")
     echo "$date_f,$SESSIONS,$TIME" >> "$LOG"
 }
 
